@@ -13,7 +13,7 @@ var username = document.getElementById("Username");
 var nameCheck = document.querySelector("name-check");
 var names = document.getElementById("name-check");
 console.log("Sds");
-var checks = true;
+var checks = false;
 
 function loading() {
   container.classList.add("loading");
