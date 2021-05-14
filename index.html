@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" type="image/jpg" href="google-icon.svg" />
+    <meta name="theme-color" content="#1a73e8" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,600&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            color: rgb(88, 88, 88);
+
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        :root {
+            --blue: #1a73e8;
+            --red: rgb(214, 0, 0);
+        }
+
+        .root {
+            min-height: 100vh;
+
+
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .col {
+            flex-direction: column;
+        }
+
+        .centerboth {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cont {
+            box-sizing: content-box;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            /* min-width: 90vw; */
+            width: 900px;
+            /* min-width: 70vw; */
+            min-height: 80vh;
+            transition: all 1s;
+            border: 1px solid rgb(139, 139, 139, 0.5);
+            border-radius: 10px;
+        }
+
+        .text-input {
+            width: 100%;
+            height: 20px;
+            padding: 15px 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            /* outline: none; */
+            border: 1px solid rgb(139, 139, 139, 0.5);
+        }
+
+
+        .label {
+
+            padding: 0px 5px;
+            position: absolute;
+            bottom: 5px;
+            color: rgb(139, 139, 139);
+            font-size: 0.9rem;
+            left: 10px;
+            z-index: 0;
+            transition: all 0.1s ease;
+            pointer-events: none;
+            background-color: white;
+
+        }
+
+        .input {
+            align-items: center;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+            padding: 20px 0px 0px 0px;
+            /* margin-right: 10px; */
+        }
+
+
+
+        .text-input:focus~label {
+            color: var(--blue)
+        }
+
+        .text-input:focus~.label,
+        .text-input:valid~.label {
+            font-size: 0.6rem;
+
+            transform: translateY(-20px);
+        }
+
+
+
+        .text-input:focus {
+            outline: none;
+            /* -moz-outline-radius: 20px; */
+            border: 1px solid var(--blue);
+        }
+
+        .alert {
+            color: var(--red);
+            font-size: 0.7rem;
+        }
+
+
+
+        .image-cont {
+            width: 50%;
+            font-size: 1.2rem;
+            text-align: center;
+            color: rgb(139, 139, 139);
+
+            /* align-items: center; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            width: 35vh;
+        }
+
+        .image-cont span {
+            width: 80%;
+        }
+
+        .form-cont {
+            width: 50%;
+            max-width: 100%;
+            padding: 30px;
+            /* border: px solid black; */
+            padding-top: 5vh;
+        }
+
+        .logo {
+            display: block;
+            width: 13vh;
+            margin-bottom: 10px;
+        }
+
+        .big-font {
+            font-size: 1.3rem;
+            /* margin-bottom: 10; */
+
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+
+        .name {
+            /* background-color: pink; */
+            margin-top: 10px;
+            /* justify-content: f; */
+        }
+
+        .mail-id {
+            width: 100%;
+        }
+
+        .pass-warn {
+            padding-left: 10px;
+        }
+
+        .showpass {
+            margin-top: 10px;
+            display: flex;
+            /* background-color: aquamarine; */
+
+        }
+
+        .showpass input {
+            width: 20px;
+            margin-right: 10px;
+            height: 20px;
+        }
+
+        #Username {
+            padding-right: 110px;
+        }
+
+        .btn {
+            background-color: var(--blue);
+            color: white;
+            outline: none;
+            margin-top: 20px;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+        }
+
+        .alert-border {
+            border: 1px solid var(--red);
+        }
+
+        .name-check {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .navigator {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            left: 0px;
+            top: -1px;
+            /* z-index: 2; */
+            background-color: #8080804b;
+
+        }
+
+        .navigator::before {
+            content: "";
+            z-index: 4;
+            background-color: var(--blue);
+            width: 34vh;
+            /* transform: translateX(100%); */
+            height: 4px;
+            position: absolute;
+            animation-name: loading;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(450%);
+
+            }
+        }
+
+        .loading:after {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.445);
+            background-blend-mode: lighten;
+            content: "";
+            top: 0px;
+            left: 0px;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .cont .n-active {
+            display: block;
+        }
+
+        .content {
+            transition: all 2s;
+            opacity: 0;
+            /* transform: translateX(-100%); */
+
+        }
+
+        .anim {
+            /* opacity: 1; */
+            transition: all 2s;
+            animation-name: slidefromright;
+            animation-duration: 0.4s;
+        }
+
+        .next {
+            opacity: 0;
+            transform: translateX(-100vw);
+        }
+
+
+
+        @keyframes slidefromright {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            90% {
+                opacity: 0.2;
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0%);
+            }
+        }
+
+        @media only screen and (max-width:1000px) {
+            .image-cont {
+                display: none;
+            }
+
+            .cont {
+                width: 450px;
+            }
+
+            .form-cont {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width:500px) {
+
+
+
+
+            .cont {
+                border: none;
+                border-radius: 0px;
+                padding: 5px;
+                min-height: 100vh;
+            }
+
+            .name {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="root flex centerboth">
+
+        <div class="cont flex">
+            <div class="navigator n-active">
+
+            </div>
+            <div class="content flex" id="content">
+                <div class="form-cont">
+
+                    <img src="google-2015.svg" alt="" class="logo" srcset="">
+                    <span class="big-font bold"> Create your Google Account</span>
+                    <form id="details">
+                        <div class="name flex">
+                            <div class="input" style="margin-right: 10px;">
+                                <input type="text" class="text-input flex" onblur="checkinput('First-Name')" required
+                                    name="First-Name" id="First-Name" />
+                                <label for="First-Name" class="label">First Name</label>
+                            </div>
+                            <div class="input">
+                                <input type="text" class="text-input flex" onblur="checkinput('Last-Name')" required
+                                    name="First-Name" id="Last-Name" />
+                                <label for="Last-Name" class="label">Last Name</label>
+                            </div>
+
+                        </div>
+                        <div class="name-check  alert" id="name-check">
+
+
+                        </div>
+                        <div class="input mail-id">
+                            <input type="text" onblur="usernamecheck();checkinput('Username')" class="text-input flex"
+                                required name="First-Name" id="Username" />
+                            <label for="Username" class="label">Username</label>
+                            <label style="position: absolute; right: 10px; bottom: 5px;">@gmail.com</label>
+                        </div>
+                        <span id="Username-info" style="font-size: 0.8rem; margin-left: 10px;">You can use letters,
+                            number &
+                            periods</span>
+
+                        <div class="name flex">
+
+                            <div class="input" style="margin-right: 10px;">
+                                <input type="password" id="pass" onblur="checkinput('pass')" class="text-input flex"
+                                    required name="FPassword" />
+                                <label for=" Password" class="label">Password</label>
+                            </div>
+
+                            <div class="input">
+                                <input type="password" id="conf-pass" onblur="checkinput('conf-pass')"
+                                    class="text-input flex" required name="FPassword id=" pssword" />
+                                <label for=" Password" class="label">Confirm</label>
+                            </div>
+
+                        </div>
+                        <div class="pass-warn">
+                            <span id="pass-sug" style="font-size: 0.8rem; "> Use 8 or more
+                                characters with a
+                                mix
+                                of letters,numers & symbols</span>
+
+                        </div>
+                        <div class="showpass">
+                            <input type="checkbox" onclick="showpass()" />
+                            <label>Show Password</label>
+                        </div>
+                        <button type="submit" class="btn" id="SUBMIT"> Next</button>
+                    </form>
+                </div>
+                <div class="image-cont flex col">
+                    <img src="account.svg" alt="" srcset="">
+                    <span> One account. All of Google working for you.</span>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
